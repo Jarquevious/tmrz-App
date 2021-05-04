@@ -13,9 +13,8 @@ export default function NewTimer() {
         placeholder="New Timer Name"
         name="name"
         value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
+        onChange={(e) => setName(e.target.value)}/>
       <button onClick={() => dispatch(addTimer(name))}>Save</button>
     </div>
-  );
+  )
 }
