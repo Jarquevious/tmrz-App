@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addTimer } from "../actions";
+import { addTimer } from "./actions/index";
 
 export default function NewTimer() {
   const [name, setName] = useState("");
