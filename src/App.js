@@ -1,5 +1,7 @@
 import ListTimers from "./components/ListTimers";
+import { loadState, saveState } from './utils';
 import reducers from "./reducers/index";
+import throttle from 'lodash/throttle';
 import { Provider } from "react-redux";
 import { createStore } from "redux";
 import { update } from "./actions";
@@ -7,7 +9,11 @@ import NewTimer from "./NewTimer";
 import React from "react";
 import "./App.css";
 
-const store = createStore(reducers);
+const persistedState = loadState()
+const store = createStore(reducers, persistedState)
+store.subscribe(throttle(() => {
+  saveState(store.getState())
+}, 1000));
 
 let lastUpdateTime = Date.now();
 setInterval(() => {
